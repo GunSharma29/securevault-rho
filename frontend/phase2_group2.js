@@ -236,7 +236,7 @@ function startRealtime() {
   if (!token || realtimeActive) return;
 
   try {
-    sseConnection = new EventSource('http://13.206.106.203:3000/api/v1/analytics/realtime?token=' + token);
+    sseConnection = new EventSource('https://securevault-rho.onrender.com/api/v1/analytics/realtime?token=' + token);
 
     sseConnection.onopen = () => {
       realtimeActive = true;
