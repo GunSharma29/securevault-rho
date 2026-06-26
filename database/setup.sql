@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 -- Add role/plan columns if missing (safe to run multiple times)
-ALTER TABLE users ADD COLUMN IF NOT EXISTS role VARCHAR(20) DEFAULT 'user';
-ALTER TABLE users ADD COLUMN IF NOT EXISTS plan VARCHAR(20) DEFAULT 'free';
+/*ALTER TABLE users ADD COLUMN IF NOT EXISTS role VARCHAR(20) DEFAULT 'user';
+ALTER TABLE users ADD COLUMN IF NOT EXISTS plan VARCHAR(20) DEFAULT 'free';*/
 
 -- Files table
 CREATE TABLE IF NOT EXISTS files (
