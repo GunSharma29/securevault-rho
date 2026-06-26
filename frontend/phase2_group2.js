@@ -7,7 +7,7 @@
 
 async function p2g2api(path, opts = {}) {
   const token = localStorage.getItem('sv_token');
-  const res = await fetch('https://securevault-backend-brlq.onrender.com' + path, {
+  const res = await fetch('https://securevault-backend-brlq.onrender.com/api/v1' + path, {
     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token, ...(opts.headers||{}) },
     ...opts
   });
