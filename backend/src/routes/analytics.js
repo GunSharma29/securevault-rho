@@ -177,7 +177,7 @@ router.get('/realtime', (req, res) => {
     const userId = req.user.userId;
 
     // keep your remaining code unchanged
-  const userId = req.user.userId;
+  
 
   // Set SSE headers
   res.setHeader('Content-Type', 'text/event-stream');
