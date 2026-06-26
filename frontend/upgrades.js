@@ -7,7 +7,7 @@
 
 async function upApi(path, opts={}) {
   const token = localStorage.getItem('sv_token');
-  const res = await fetch('https://securevault-rho.onrender.com' + path, {
+  const res = await fetch('https://securevault-backend-brlq.onrender.com' + path, {
     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token, ...(opts.headers||{}) },
     ...opts
   });
