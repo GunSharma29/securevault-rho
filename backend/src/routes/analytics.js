@@ -141,7 +141,42 @@ router.get('/risk-history', requireAuth, async (req, res) => {
 // ════════════════════════════════════════════════════
 
 // SSE endpoint — client connects here for live updates
-router.get('/realtime', requireAuth, (req, res) => {
+const jwt = require('jsonwebtoken');
+
+router.get('/realtime', (req, res) => {
+
+    let token = req.query.token;
+
+    if (!token) {
+        return res.status(401).json({
+            error: "Token missing"
+        });
+    }
+
+    try {
+
+        const user = jwt.verify(
+            token,
+            process.env.JWT_SECRET,
+            {
+                issuer: "ciphercloud",
+                audience: "ciphercloud-api"
+            }
+        );
+
+        req.user = user;
+
+    } catch (err) {
+
+        return res.status(401).json({
+            error: "Invalid token"
+        });
+
+    }
+
+    const userId = req.user.userId;
+
+    // keep your remaining code unchanged
   const userId = req.user.userId;
 
   // Set SSE headers

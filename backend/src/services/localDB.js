@@ -9,6 +9,17 @@ const pool = mysql.createPool({
   user: process.env.DB_USER||'root', password: process.env.DB_PASSWORD||'Akshay7240@',
   waitForConnections: true, connectionLimit: 10,
 });
+(async () => {
+  try {
+    const [db] = await pool.query("SELECT DATABASE() AS db");
+    console.log("DATABASE:", db);
+
+    const [cols] = await pool.query("SHOW COLUMNS FROM files");
+    console.log(cols.map(c => c.Field));
+  } catch (err) {
+    console.error(err);
+  }
+})();
 
 pool.getConnection()
   .then(c => { logger.info('MySQL connected successfully'); c.release(); })
