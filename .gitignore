@@ -1,8 +1,26 @@
+# Dependencies
 node_modules/
+
+# Environment Variables
 .env
+.env.*
+!.env.example
+
+# Uploads
+uploads/
 uploads/blocks/
 uploads/stego/
 uploads/files/
+
+# Coverage
 coverage/
+
+# Logs
 *.log
+
+# Terraform
 .terraform/
+
+# OS Files
+.DS_Store
+Thumbs.db
