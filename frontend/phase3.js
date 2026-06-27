@@ -5,17 +5,26 @@
 // <script src="phase3.js"></script>
 // ═══════════════════════════════════════════════════════
 
+const API_BASE = 'https://securevault-backend-brlq.onrender.com/api/v1';
+
 async function p3api(path, opts = {}) {
   const token = localStorage.getItem('sv_token');
-  const res = await fetch('https://securevault-backend-brlq.onrender.com' + path, {
-    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token, ...(opts.headers||{}) },
+
+  const res = await fetch(API_BASE + path, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': token ? `Bearer ${token}` : '',
+      ...(opts.headers || {})
+    },
     ...opts
   });
+
   const d = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(d.error || 'HTTP ' + res.status);
+
+  if (!res.ok) throw new Error(d.error || `HTTP ${res.status}`);
+
   return d;
 }
-
 // ════════════════════════════════════════════════════
 // FEATURE 26 — ZERO-KNOWLEDGE PROOF
 // ════════════════════════════════════════════════════

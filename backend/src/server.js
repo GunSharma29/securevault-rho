@@ -9,6 +9,7 @@ const logger    = require('./utils/logger');
 
 
 const app  = express();
+app.set("trust proxy", 1);
 const PORT = process.env.PORT || 3000;
 const API  = `/api/${process.env.API_VERSION || 'v1'}`;
 
