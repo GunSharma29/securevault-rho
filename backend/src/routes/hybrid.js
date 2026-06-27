@@ -260,8 +260,27 @@ router.post('/:fileId/decrypt',
       }
 
       // Check block files exist
-      if (!fs.existsSync(fileRecord.block1Path))
-        return res.status(404).json({ error: 'Encrypted blocks not found on server' });
+      logger.info("Block paths", {
+  block1: fileRecord.block1Path,
+  block2: fileRecord.block2Path,
+  block3: fileRecord.block3Path,
+});
+
+logger.info("Block exists", {
+  block1: fs.existsSync(fileRecord.block1Path),
+  block2: fs.existsSync(fileRecord.block2Path),
+  block3: fs.existsSync(fileRecord.block3Path),
+});
+
+if (
+  !fs.existsSync(fileRecord.block1Path) ||
+  !fs.existsSync(fileRecord.block2Path) ||
+  !fs.existsSync(fileRecord.block3Path)
+) {
+  return res.status(404).json({
+    error: "Encrypted blocks not found on server"
+  });
+}
 
       // Decrypt all 3 blocks
       let dec1, dec2, dec3;
